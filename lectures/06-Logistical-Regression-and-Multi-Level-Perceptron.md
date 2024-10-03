@@ -2,14 +2,15 @@
 
 For a multi-class image classification task:
 
-Goal: for an image label $(x,y)$ pair drawn from a unknown distribution, find a classifier $h \ell H$ with a minium misclassification probability:
+Goal: for an image label $(x,y)$ pair drawn from a unknown distribution, find a classifier $h \in H$ with a minium misclassification probability:
 
 $$
-add 
-
+\min_{h \in H} Pr(h(x) \neq y)
 $$
 
 ## Empirical Risk Minimization (ERM)
+
+ERM is a principle in statistical learning theory which defines a family of learning algorithms based on evaluating performance over a known and fixed dataset. 
 
 h is some classifier 
 
@@ -19,9 +20,14 @@ $$
 
 You need a loss function, that explains how well the model is doing
 Typical loss functions:
-- Logistic loss:
+- Logistic loss: 
+  - $\ell (h_w(x), y) = log(1+e^{-yh_w(x)})$
 - Quadratic loss: 
-- Hinge loss => maximizes the margin for the support vector machines 
+  - $\ell (h_w(x), y) = ||y - h_w(x)||^2_2$
+    - Notation note: stands for 2-norm, also known as euclidean norm
+- Hinge loss
+  - maximizes the margin for the support vector machines 
+  - $\ell (h_w(x), y) = \max (0, 1-yh_w(x))$
 
 
 ## Classification 
@@ -56,22 +62,61 @@ Sigmoids can also have a variable C.
 
 ## Logistic Regression 
 
-Linear mapping into a sigmoid 
+Linear mapping into a sigmoid:
+
+$$h_w(x) = x^Tw$$ 
+
+Into sigmoid it becomes:
+
+$$
+s(h_w(x))= \frac{1}{e^{-x^Tw} +1}
+$$
+
+Then the output becomes between 0 and 1 inclusive. 
 
 Output: the predicted probability of correct value
 
-Interpret 
+$$
+\^p_w(1|x) = s(h_w(x)) = \frac{\exp(x^Tw)}{1 + \exp(x^Tw)} \newline
 
-TODO: review 
+\^p_w(-1|x) = 1 - s(h_w(x)) = \frac{1}{1 + \exp(x^Tw)} \\
+
+$$
+
+Output: $\left[\^p_w(-1|x), \^p_w(1|x)\right]^T$
+
+For training example $(x_n, y_n)$, then the loss function becomes:
+ $\ell_n(w) = -\log(\^p_w(y_n|x_n))$
+
+To have a smaller loss, give higher probability to true label. 
 
 
-Minimizing the weights is the same ass cross entropy loss of out data points. -log of the probability is the .................
+## Cross-entropy loss
+
+For the data point $(x_i, y_i)$, the loss is defined as: 
+$$
+\ell_i(w) = -y_i\log(s(h_w(x_i)) - (1-y_i)\log(1-s(h_w(x_i))))
+$$
+
+For one hot labels: 
+
+$$
+\ell_i(w) = 
+\begin{cases} 
+    -\log(s(h_w(x_i))) & \text{ if } y_i = 1 \\
+    -\log(1 - s(h_w(x_i))) & \text{ if } y_i = 0
+\end{cases}
+
+$$
 
 
-Cross-entropy loss: 
-
-
-One hot labels: 
+To note: 
+- Logistic regression is a method for classification problem
+- Apply sigmoid to a linear mapping
+- Output can be interpreted as the predicted probability $\^p_w (y_i|x_i)$
+- Cross-entropy loss derived by maximum likelihood estimation of w
+- Cross-entropy loss is the sum of the negative logarithms of the predicted probabilities weighted by the ground-truth distribution
+- For one-hot labels, the negative logarithm of the predicted probability of the ground-truth class
 
 
 
