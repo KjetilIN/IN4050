@@ -138,3 +138,43 @@ Label version:
 - One vs rest: each classifier focuses on itself
   - Problem: space is not patrician correctly
   - Solution: choose the class with highest probability 
+
+### Multi-Class Classification
+
+- Each node has its own connections 
+  - Column in the weight matrix is a set of weights connected to a single node
+  - A row in the weight matrix is a set of weights connected to a list of nodes 
+
+Multi-label perceptron: 
+- N output nodes that all are used to classify their own thing
+- Each set of weights are connected to that node - i.e when we update the weights for a output node, then we don't interfere with the other nodes. 
+- Could have described the system as n independent binary perceptions!
+- Use **argmax** to find the max value for each output note. When it does not match, we use the same update rule as perceptron 
+
+### Multi-output linear regression 
+
+- Using the MSE as loss function 
+- Again the same as using a set of independent models
+
+## Multinomial Logistic Regression
+
+- Apply softmax-function S, to the output: 
+
+$y_j = (S(z_1, \dots, z_n))_j = \frac{e^{z_j}}{\sum_{k=1}^n e^{z_k}}$
+
+Note the following : 
+- sum of output y is equal to 1
+- A probability distribution is created 
+
+
+### Training of Multinomial Logistic regression with cross-entropy loss
+
+$$
+L_{CE}(y,t) = - \sum_{j=1}^n t_j \log y_j = -log y_s
+$$
+
+Goal is to find $\frac{\partial}{\partial w_{i,j}}L_{CE}(x,t,w)$ for all weights. Result is simple: 
+
+$$
+\frac{\partial}{\partial w_{i,j}}L_{CE}(x,t,w) = (y_j-t_j)x_i
+$$
