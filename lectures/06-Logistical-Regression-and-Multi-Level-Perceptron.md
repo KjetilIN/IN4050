@@ -78,9 +78,7 @@ Output: the predicted probability of correct value
 
 $$
 \^p_w(1|x) = s(h_w(x)) = \frac{\exp(x^Tw)}{1 + \exp(x^Tw)} \newline
-
-\^p_w(-1|x) = 1 - s(h_w(x)) = \frac{1}{1 + \exp(x^Tw)} \\
-
+\^p_w(-1|x) = 1 - s(h_w(x)) = \frac{1}{1 + \exp(x^Tw)} 
 $$
 
 Output: $\left[\^p_w(-1|x), \^p_w(1|x)\right]^T$
@@ -106,7 +104,6 @@ $$
     -\log(s(h_w(x_i))) & \text{ if } y_i = 1 \\
     -\log(1 - s(h_w(x_i))) & \text{ if } y_i = 0
 \end{cases}
-
 $$
 
 
@@ -160,7 +157,9 @@ Multi-label perceptron:
 
 - Apply softmax-function S, to the output: 
 
-$y_j = (S(z_1, \dots, z_n))_j = \frac{e^{z_j}}{\sum_{k=1}^n e^{z_k}}$
+$$
+y_j = (S(z_1, \dots, z_n))_j = \frac{e^{z_j}}{\sum_{k=1}^n e^{z_k}}
+$$
 
 Note the following : 
 - sum of output y is equal to 1
