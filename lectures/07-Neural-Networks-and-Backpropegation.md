@@ -140,3 +140,14 @@ Not all updates are good.
 Therefore we use a smaller batches.
 
 ....
+
+
+
+# Vanishing gradient  
+
+Gradient with respect to loss is so solve 
+- Solution: relu because we discard smaller values
+- Cause of the problem: 
+  - sigmoid because the values are scaled down to small values 
+  - tanh 
+  - softmax
