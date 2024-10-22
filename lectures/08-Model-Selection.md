@@ -123,12 +123,27 @@ Does adding more data help?
 - Likely to help with high variance 
 - But not for bias, because..
 
-
 Does feature selecting help?
 - Maybe selecting only some features will remove noise from the problem
 - all features + insufficient data => overfitting 
 - The selected features can do the task 
 
-
 A complex model with create a complex curve, when the problem itself can be simple!
 - Meaning that a simple prediction model performs better
+
+By adding a regularization term lambda, which is a new hyper parameter. 
+- Used to balance 
+
+Ridge regularization:
+- Small lambda is when we don't have a regularization problem
+- Most used are L2-distance => sum of squared coefficients
+- Keeps all features, but reduces the size of them to be almost zero(so that least important features are reduced to very small number)
+
+Lasso Regularization:
+- Uses L1 
+- Sum of absolute values of coefficients 
+- Useful for feature selection 
+- Retain only the most relevant features 
+
+Elastic nets: 
+- Combine L1 and L2
